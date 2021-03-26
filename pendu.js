@@ -1,25 +1,15 @@
 let words = ['fort', 'ingénieux', 'déterminé', 'shonen', 'enveloppe', 'poste'];
-let wordNow = '';
-
-document.querySelector('#test').textContent = wordNow;
 
 let changeWord = function getRandomInt() {
     let number = Math.floor(Math.random() * Math.floor(words.length));
-    document.querySelector('#word').textContent = words[number];
-    wordNow = words[number];
+    let wordPendu = Array.from(words[number]).join(' ');
+    document.querySelector('#word').textContent = wordPendu.toUpperCase();
 };
 
 changeWord();
 
 let randomNumber = document.querySelector('#randomnumber');
 randomNumber.addEventListener('click', changeWord);
-
-//wordNow permet de stocker le mot actuel
-
-
-let wordHidden = Array.from(wordNow).join(' ');
-
-document.querySelector('#test').textContent = wordHidden;
 
 
 
