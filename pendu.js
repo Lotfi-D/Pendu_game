@@ -1,25 +1,41 @@
-let words = ['fort', 'ingénieux', 'déterminé', 'shonen', 'enveloppe', 'poste'];
+let words = ['fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste'];
 let wordNow = '';
-
-document.querySelector('#test').textContent = wordNow;
 
 let changeWord = function getRandomInt() {
     let number = Math.floor(Math.random() * Math.floor(words.length));
-    document.querySelector('#word').textContent = words[number];
-    wordNow = words[number];
+    wordNow = [...words[number]];
+    
+    let tableau = [];
+    tableau.push(wordNow[0]);
+
+    for(i=1; i < wordNow.length-1; i++) {
+        if(wordNow[0] === wordNow[i] || wordNow[wordNow.length-1] === wordNow[i]) {
+            tableau.push(wordNow[i]);
+        }
+        else {
+            tableau.push('_');
+        }  
+    }
+    tableau.push(wordNow[wordNow.length-1]);
+    document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
 };
+
+let findLetters = function letterToFind () {
+    var x = document.querySelector("#findWord").value;
+    alert(x);
+}
+
+
 
 changeWord();
 
 let randomNumber = document.querySelector('#randomnumber');
 randomNumber.addEventListener('click', changeWord);
 
-//wordNow permet de stocker le mot actuel
+
+document.querySelector('#jcpas').addEventListener('click', findLetters) ;
 
 
-let wordHidden = Array.from(wordNow).join(' ');
-
-document.querySelector('#test').textContent = wordHidden;
 
 
 
