@@ -45,7 +45,7 @@ let randomNumber = document.querySelector('#randomnumber');
 randomNumber.addEventListener('click', changeWord);
 
 
-document.querySelector('#jcpas').addEventListener('click', letterToFind) ;
+document.querySelector('#validateLetter').addEventListener('click', letterToFind) ;
 
 
 
