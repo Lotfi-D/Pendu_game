@@ -1,6 +1,7 @@
 let words = ['fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste', 'yzutzzpo'];
 let wordNow = '';
 let tableau = [];
+let count = 0;
 
 function changeWord() {
     let number = Math.floor(Math.random() * Math.floor(words.length));
@@ -18,6 +19,8 @@ function changeWord() {
     }
     tableau.push(wordNow[wordNow.length-1]);
     document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
+    count = 0;
+    console.log('count', count);
 };
 
 function letterToFind () {
@@ -35,6 +38,8 @@ function letterToFind () {
     else {
         alert('REALLY BAD');
     } 
+    count++;
+    console.log('count', count);
 }
 
 
