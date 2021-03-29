@@ -1,11 +1,11 @@
 let words = ['fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste'];
 let wordNow = '';
+let tableau = [];
 
 let changeWord = function getRandomInt() {
     let number = Math.floor(Math.random() * Math.floor(words.length));
     wordNow = [...words[number]];
     
-    let tableau = [];
     tableau.push(wordNow[0]);
 
     for(i=1; i < wordNow.length-1; i++) {
@@ -21,8 +21,29 @@ let changeWord = function getRandomInt() {
 };
 
 let findLetters = function letterToFind () {
-    var x = document.querySelector("#findWord").value;
-    alert(x);
+    let inputLetter = document.querySelector("#findWord").value;
+    //alert(inputLetter);
+    
+    //for (i=0; i < wordNow.length-1; i++) {
+    //    if(inputLetter === wordNow[i]) {
+    //        alert('good');
+    //    }
+    //    else{
+    //        alert('bad');
+    //    }
+    //}
+    let index = wordNow.indexOf(inputLetter);
+
+    if(index != (-1)) {
+        tableau.splice(index, 0 ,inputLetter);
+        document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
+    }
+    else{
+        alert('REALLY BAD');
+    }
+
+
+    console.log('lolooo', index)
 }
 
 
