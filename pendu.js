@@ -3,9 +3,19 @@ let wordNow = '';
 let tableau = [];
 let count = 0;
 let error = 0;
+let numberBefore = null;
 
 function changeWord() {
+    count = 0;
+    error = 0;
+
     let number = Math.floor(Math.random() * Math.floor(words.length));
+
+   
+    if ( number === numberBefore && numberBefore != null) {
+        number;
+    };
+
     wordNow = [...words[number]];
     tableau=[];
     tableau.push(wordNow[0]);
@@ -20,9 +30,8 @@ function changeWord() {
     }
     tableau.push(wordNow[wordNow.length-1]);
     document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
-    count = 0;
-    console.log('count', count);
-    error = 0;
+    console.log('number: ' + number , 'numberBefore:' + numberBefore)
+    numberBefore = number ;
 };
 
 function letterToFind () {
