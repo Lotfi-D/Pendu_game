@@ -1,11 +1,11 @@
-let words = ['fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste'];
+let words = ['fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste', 'yzutzzpo'];
 let wordNow = '';
 let tableau = [];
 
-let changeWord = function getRandomInt() {
+function changeWord() {
     let number = Math.floor(Math.random() * Math.floor(words.length));
     wordNow = [...words[number]];
-    
+    tableau=[];
     tableau.push(wordNow[0]);
 
     for(i=1; i < wordNow.length-1; i++) {
@@ -20,30 +20,21 @@ let changeWord = function getRandomInt() {
     document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
 };
 
-let findLetters = function letterToFind () {
+function letterToFind () {
     let inputLetter = document.querySelector("#findWord").value;
-    //alert(inputLetter);
-    
-    //for (i=0; i < wordNow.length-1; i++) {
-    //    if(inputLetter === wordNow[i]) {
-    //        alert('good');
-    //    }
-    //    else{
-    //        alert('bad');
-    //    }
-    //}
     let index = wordNow.indexOf(inputLetter);
 
-    if(index != (-1)) {
-        tableau.splice(index, 0 ,inputLetter);
+    if (index != (-1)) {
+        for(i=0; i < wordNow.length; i++) {
+            if (wordNow[i] === inputLetter) {
+                tableau.splice(i, 1 ,inputLetter);
+            }
+        }
         document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
     }
-    else{
+    else {
         alert('REALLY BAD');
-    }
-
-
-    console.log('lolooo', index)
+    } 
 }
 
 
@@ -54,7 +45,7 @@ let randomNumber = document.querySelector('#randomnumber');
 randomNumber.addEventListener('click', changeWord);
 
 
-document.querySelector('#jcpas').addEventListener('click', findLetters) ;
+document.querySelector('#jcpas').addEventListener('click', letterToFind) ;
 
 
 
