@@ -6,8 +6,8 @@ let error = 0;
 let numberBefore = null;
 
 function changeWord() {
-    if(error !==0) {
-        document.querySelector('#dessin').innerHTML= "";
+    if (error !== 0) {
+        document.querySelector('#dessin').innerHTML = "";
     }
     count = 0;
     error = 0;
@@ -15,110 +15,55 @@ function changeWord() {
     let number = Math.floor(Math.random() * Math.floor(words.length));
 
     wordNow = [...words[number]];
-    tableau=[];
+    tableau = [];
     tableau.push(wordNow[0]);
 
-    for(i=1; i < wordNow.length-1; i++) {
-        if(wordNow[0] === wordNow[i] || wordNow[wordNow.length-1] === wordNow[i]) {
+    for (i = 1; i < wordNow.length - 1; i++) {
+        if (wordNow[0] === wordNow[i] || wordNow[wordNow.length - 1] === wordNow[i]) {
             tableau.push(wordNow[i]);
-        }
-        else {
+        } else {
             tableau.push('_');
-        }  
+        }
     }
-    
-    tableau.push(wordNow[wordNow.length-1]);
+
+    tableau.push(wordNow[wordNow.length - 1]);
     document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
-    console.log('number: ' + number , 'numberBefore:' + numberBefore)
-    numberBefore = number ;
+    console.log('number: ' + number, 'numberBefore:' + numberBefore)
+    numberBefore = number;
 };
 
-function letterToFind () {
+function letterToFind() {
     let inputLetter = document.querySelector("#findWord").value;
     let index = wordNow.indexOf(inputLetter);
 
     if (index != (-1)) {
-        for(i=0; i < wordNow.length; i++) {
+        for (i = 0; i < wordNow.length; i++) {
             if (wordNow[i] === inputLetter) {
-                tableau.splice(i, 1 ,inputLetter);
+                tableau.splice(i, 1, inputLetter);
             }
         }
         document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
+        document.querySelector('#message').innerHTML = "<p class=' text-success fw-bold mt-3'> Bonne réponse : La lettre "+ inputLetter.toUpperCase() +" fait bien partie du mot</p>";
     }
     if (index === (-1) && error < 8) {
-        alert('REALLY BAD');
         error++;
-        document.querySelector('#dessin').innerHTML= "<img src='" + error +".png' class='img-fluid' style='width:15rem'>";
+        document.querySelector('#message').innerHTML = "<p class=' text-danger fw-bold mt-3'>Mauvaise réponse : La lettre "+ inputLetter.toUpperCase() +" ne fait pas partie du mot</p>";
+        document.querySelector('#dessin').innerHTML = "<img src='" + error + ".png' class='img-fluid' style='width:15rem'>";
     }
-    if(error === 8 || count === 10){
+    if (error === 8 || count === 10) {
         alert('Vous avez perdu la partie');
-        document.querySelector('#dessin').innerHTML= "<img src='8.png' class='img-fluid' style='width:15rem'>";
+        document.querySelector('#dessin').innerHTML = "<img src='8.png' class='img-fluid' style='width:15rem'>";
     }
     count++;
     console.log('count', count);
     console.log('error', error);
-
-    
 }
 
 
 
-changeWord();
 
+changeWord();
 let randomNumber = document.querySelector('#randomnumber');
 randomNumber.addEventListener('click', changeWord);
 
-
-document.querySelector('#validateLetter').addEventListener('click', 
-    letterToFind
-   ) ;
-
-
-
-
-
-
-
-
-
-
-
-
-//permet de changer la ville et de relancer la fonction après si la ville est entrée
-//let changerVille = document.querySelector('#changer');
-//changerVille.addEventListener('click', () => {
-//    ville = prompt('Entrez une ville');
-//    if(ville != ""){
-//        meteo(ville)
-//    };
-//})
-
-// la fonction permet de récupérer la température de la ville
-// function meteo(ville) {
-//     const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + ville + '&appid=' + apiKey + '&units=metric';
-//     let request = new XMLHttpRequest();
-//     request.open('GET', url);
-//     request.responseType = 'json';
-//     request.send();
-
-//     request.onload = function () {
-//         if (request.readyState === XMLHttpRequest.DONE) {
-//             if (request.status === 200) {
-//                 let result = request.response;
-//                 let temperature = result.main.temp;
-//                 let ville = result.name;
-//                 let icon= result.weather[0].icon;
-//                 let description = result.weather[0].description;
-//                 document.querySelector('#ville').textContent = ville;
-//                 document.querySelector('#temperature_label').textContent = Math.floor(temperature);
-//                 document.querySelector('#weather').innerHTML =  '<img src="http://openweathermap.org/img/wn/' + icon +'@2x.png"/>';
-//                 document.querySelector('#description').textContent = description;
-//             } else {
-//                 alert('Veuillez entrer le nom d\'une ville correct');
-//             }
-//         }
-//     }
-// }
-
-// la fonction meteo se lance au chargement de la page
-//meteo(ville);
+document.querySelector('#validateLetter').addEventListener('click', letterToFind);
