@@ -4,13 +4,12 @@ let tableau = [];
 let count = 0;
 let error = 0;
 let numberBefore = null;
-let letterUsedBefore = [];
 
 function changeWord() {
-    
     document.querySelector('#dessin').innerHTML = "";
     document.querySelector('#message').innerHTML = "";
-    
+    document.querySelector('#messageRound').innerHTML = "";
+
     count = 0;
     error = 0;
 
@@ -37,6 +36,7 @@ function changeWord() {
 function letterToFind() {
     let inputLetter = document.querySelector("#findWord").value;
     let index = wordNow.indexOf(inputLetter);
+    count++;
 
     if (index != (-1)) {
         for (i = 0; i < wordNow.length; i++) {
@@ -45,28 +45,52 @@ function letterToFind() {
             }
         }
         document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
-        document.querySelector('#message').innerHTML = "<p class=' text-success fw-bold mt-3'> Bonne réponse : La lettre "+ inputLetter.toUpperCase() +" fait bien partie du mot</p>";
+        document.querySelector('#message').innerHTML = "<p class=' text-success fw-bold mt-3'> Bonne réponse : La lettre " + inputLetter.toUpperCase() + " fait bien partie du mot</p>";
     }
     if (index === (-1) && error < 8) {
         error++;
         let messageError;
-        if((8-error) === 1){
-            messageError = 'Vous avez encore le droit à ' + (8-error) + ' mauvaise réponse !';
-        }
-        else{
-            messageError = 'Vous avez encore le droit à ' + (8-error) + ' mauvaises réponses !';
+        if ((8 - error) === 1) {
+            messageError = 'Vous avez encore le droit à ' + (8 - error) + ' mauvaise réponse !';
+        } else {
+            messageError = 'Vous avez encore le droit à ' + (8 - error) + ' mauvaises réponses !';
         }
 
-        document.querySelector('#message').innerHTML = "<p class=' text-danger fw-bold mt-3'>Mauvaise réponse : La lettre "+ inputLetter.toUpperCase() +" ne fait pas partie du mot</p>";
-        document.querySelector('#dessin').innerHTML = "<img src='" + error + ".png' class='img-fluid' style='width:15rem'><p class='mt-2'>"+ messageError + "</p>";
+        document.querySelector('#message').innerHTML = "<p class='text-danger fw-bold mt-3'>Mauvaise réponse : La lettre " + inputLetter.toUpperCase() + " ne fait pas partie du mot</p>";
+        document.querySelector('#dessin').innerHTML = "<img src='" + error + ".png' class='img-fluid' style='width:15rem'><p class='mt-2'>" + messageError + "</p>";
     }
+    
+   
+   //message à afficher en fonction des coups et des erreurs    
+    if ((10 - count) === 1) {
+        document.querySelector('#messageRound').textContent = "Il vous reste " + (10 - count) + " coup à jouer";
+    } else {
+        document.querySelector('#messageRound').textContent = "Il vous reste " + (10 - count) + " coups à jouer";
+    };
+
     if (error === 8 || count === 10) {
         alert('Vous avez perdu la partie');
-        document.querySelector('#dessin').innerHTML = "<img src='8.png' class='img-fluid' style='width:15rem'>";
+        document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! </p>";
+        document.querySelector('#dessin').innerHTML = " ";
+        document.querySelector('#message').innerHTML ="";
     }
-    count++;
+
+    if (tableau.toString() === wordNow.toString()) {
+        document.querySelector('#messageRound').innerHTML = "<p class='text-success fw-bold'>La partie est finie, Félicitations, vous avez gagné ! </p>";
+        document.querySelector('#dessin').innerHTML = " ";
+        document.querySelector('#message').innerHTML ="";
+        alert('Vous avez gagné la partie');
+    }
+
+    console.log('test Str: ', tableau.toString(), 'test wordNow: ', wordNow.toString());
+
+
     console.log('count', count);
     console.log('error', error);
+    console.log('tableau', tableau);
+    console.log('tableau du pendu: ', tableau, 'tableau du mot: ', wordNow);
+
+
 }
 
 
