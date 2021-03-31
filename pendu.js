@@ -3,7 +3,8 @@ let wordNow = '';
 let tableau = [];
 let count = 0;
 let error = 0;
-let numberBefore = null;
+let numberBefore = 0;
+let number = 0;
 let finish = false
 
 function changeWord() {
@@ -14,7 +15,10 @@ function changeWord() {
     count = 0;
     error = 0;
 
-    let number = Math.floor(Math.random() * Math.floor(words.length));
+    do {
+        number = Math.floor(Math.random() * Math.floor(words.length));
+    }
+    while(numberBefore == number);
 
     wordNow = [...words[number]];
     tableau = [];
@@ -89,7 +93,6 @@ function letterToFind() {
         finish = true;
         alert('Vous avez gagné la partie !');
     }
-
     console.log('count', count, 'error', error);
 }
 
