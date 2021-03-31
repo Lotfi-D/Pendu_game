@@ -4,7 +4,7 @@ let tableau = [];
 let count = 0;
 let error = 0;
 let numberBefore = null;
-let finish = false 
+let finish = false
 
 function changeWord() {
     document.querySelector('#dessin').innerHTML = "";
@@ -46,15 +46,18 @@ function letterToFind() {
         }
         document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
         document.querySelector('#message').innerHTML = "<p class=' text-success fw-bold mt-3'> Bonne réponse : La lettre " + inputLetter.toUpperCase() + " fait bien partie du mot</p>";
-        if(count < 10) {
+        if (count < 10) {
             count++;
         }
     }
     if (index === (-1) && error < 8 && finish === false) {
-        if(error < 8) {
+        if (error < 8 && count < 10) {
             error++;
+            count++;
         }
+
         let messageError;
+
         if ((8 - error) === 1) {
             messageError = 'Vous avez encore le droit à ' + (8 - error) + ' mauvaise réponse !';
         } else {
@@ -63,12 +66,9 @@ function letterToFind() {
 
         document.querySelector('#message').innerHTML = "<p class='text-danger fw-bold mt-3'>Mauvaise réponse : La lettre " + inputLetter.toUpperCase() + " ne fait pas partie du mot</p>";
         document.querySelector('#dessin').innerHTML = "<img src='" + error + ".png' class='img-fluid' style='width:15rem'><p class='mt-2'>" + messageError + "</p>";
-        if(count < 10) {
-            count++;
-        }
     }
-    
-   //message à afficher en fonction des coups et des erreurs    
+
+    //message à afficher en fonction des coups et des erreurs    
     if ((10 - count) === 1) {
         document.querySelector('#messageRound').textContent = "Il vous reste " + (10 - count) + " coup à jouer";
     } else {
@@ -76,20 +76,21 @@ function letterToFind() {
     };
 
     if (error === 8 || count === 10) {
-        alert('Vous avez perdu la partie');
         document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! </p>";
-        document.querySelector('#dessin').innerHTML = " ";
-        document.querySelector('#message').innerHTML ="";
+        document.querySelector('#message').innerHTML = "";
         finish = true;
+        alert('Vous avez perdu la partie');
     }
 
     if (tableau.toString() === wordNow.toString()) {
         document.querySelector('#messageRound').innerHTML = "<p class='text-success fw-bold'>La partie est finie, Félicitations, vous avez gagné ! </p>";
         document.querySelector('#dessin').innerHTML = " ";
-        document.querySelector('#message').innerHTML ="";
+        document.querySelector('#message').innerHTML = "";
         finish = true;
-        alert('Vous avez gagné la partie');
+        alert('Vous avez gagné la partie !');
     }
+
+    console.log('count', count, 'error', error);
 }
 
 changeWord();
