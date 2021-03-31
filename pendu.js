@@ -4,6 +4,7 @@ let tableau = [];
 let count = 0;
 let error = 0;
 let numberBefore = null;
+let finish = false 
 
 function changeWord() {
     document.querySelector('#dessin').innerHTML = "";
@@ -36,9 +37,8 @@ function changeWord() {
 function letterToFind() {
     let inputLetter = document.querySelector("#findWord").value;
     let index = wordNow.indexOf(inputLetter);
-    count++;
 
-    if (index != (-1)) {
+    if (index !== (-1) && finish === false) {
         for (i = 0; i < wordNow.length; i++) {
             if (wordNow[i] === inputLetter) {
                 tableau.splice(i, 1, inputLetter);
@@ -46,9 +46,14 @@ function letterToFind() {
         }
         document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
         document.querySelector('#message').innerHTML = "<p class=' text-success fw-bold mt-3'> Bonne réponse : La lettre " + inputLetter.toUpperCase() + " fait bien partie du mot</p>";
+        if(count < 10) {
+            count++;
+        }
     }
-    if (index === (-1) && error < 8) {
-        error++;
+    if (index === (-1) && error < 8 && finish === false) {
+        if(error < 8) {
+            error++;
+        }
         let messageError;
         if ((8 - error) === 1) {
             messageError = 'Vous avez encore le droit à ' + (8 - error) + ' mauvaise réponse !';
@@ -58,9 +63,11 @@ function letterToFind() {
 
         document.querySelector('#message').innerHTML = "<p class='text-danger fw-bold mt-3'>Mauvaise réponse : La lettre " + inputLetter.toUpperCase() + " ne fait pas partie du mot</p>";
         document.querySelector('#dessin').innerHTML = "<img src='" + error + ".png' class='img-fluid' style='width:15rem'><p class='mt-2'>" + messageError + "</p>";
+        if(count < 10) {
+            count++;
+        }
     }
     
-   
    //message à afficher en fonction des coups et des erreurs    
     if ((10 - count) === 1) {
         document.querySelector('#messageRound').textContent = "Il vous reste " + (10 - count) + " coup à jouer";
@@ -73,28 +80,17 @@ function letterToFind() {
         document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! </p>";
         document.querySelector('#dessin').innerHTML = " ";
         document.querySelector('#message').innerHTML ="";
+        finish = true;
     }
 
     if (tableau.toString() === wordNow.toString()) {
         document.querySelector('#messageRound').innerHTML = "<p class='text-success fw-bold'>La partie est finie, Félicitations, vous avez gagné ! </p>";
         document.querySelector('#dessin').innerHTML = " ";
         document.querySelector('#message').innerHTML ="";
+        finish = true;
         alert('Vous avez gagné la partie');
     }
-
-    console.log('test Str: ', tableau.toString(), 'test wordNow: ', wordNow.toString());
-
-
-    console.log('count', count);
-    console.log('error', error);
-    console.log('tableau', tableau);
-    console.log('tableau du pendu: ', tableau, 'tableau du mot: ', wordNow);
-
-
 }
-
-
-
 
 changeWord();
 let randomNumber = document.querySelector('#randomnumber');
