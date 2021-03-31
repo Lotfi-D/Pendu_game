@@ -6,15 +6,13 @@ let error = 0;
 let numberBefore = null;
 
 function changeWord() {
+    if(error !==0) {
+        document.querySelector('#dessin').innerHTML= "";
+    }
     count = 0;
     error = 0;
 
     let number = Math.floor(Math.random() * Math.floor(words.length));
-
-   
-    if ( number === numberBefore && numberBefore != null) {
-        number;
-    };
 
     wordNow = [...words[number]];
     tableau=[];
@@ -28,6 +26,7 @@ function changeWord() {
             tableau.push('_');
         }  
     }
+    
     tableau.push(wordNow[wordNow.length-1]);
     document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
     console.log('number: ' + number , 'numberBefore:' + numberBefore)
@@ -46,11 +45,15 @@ function letterToFind () {
         }
         document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
     }
-    else {
+    if (index === (-1) && error < 8) {
         alert('REALLY BAD');
         error++;
         document.querySelector('#dessin').innerHTML= "<img src='" + error +".png' class='img-fluid' style='width:15rem'>";
-    } 
+    }
+    if(error === 8 || count === 10){
+        alert('Vous avez perdu la partie');
+        document.querySelector('#dessin').innerHTML= "<img src='8.png' class='img-fluid' style='width:15rem'>";
+    }
     count++;
     console.log('count', count);
     console.log('error', error);
@@ -66,7 +69,9 @@ let randomNumber = document.querySelector('#randomnumber');
 randomNumber.addEventListener('click', changeWord);
 
 
-document.querySelector('#validateLetter').addEventListener('click', letterToFind) ;
+document.querySelector('#validateLetter').addEventListener('click', 
+    letterToFind
+   ) ;
 
 
 
