@@ -4,11 +4,13 @@ let tableau = [];
 let count = 0;
 let error = 0;
 let numberBefore = null;
+let letterUsedBefore = [];
 
 function changeWord() {
-    if (error !== 0) {
-        document.querySelector('#dessin').innerHTML = "";
-    }
+    
+    document.querySelector('#dessin').innerHTML = "";
+    document.querySelector('#message').innerHTML = "";
+    
     count = 0;
     error = 0;
 
@@ -47,8 +49,16 @@ function letterToFind() {
     }
     if (index === (-1) && error < 8) {
         error++;
+        let messageError;
+        if((8-error) === 1){
+            messageError = 'Vous avez encore le droit à ' + (8-error) + ' mauvaise réponse !';
+        }
+        else{
+            messageError = 'Vous avez encore le droit à ' + (8-error) + ' mauvaises réponses !';
+        }
+
         document.querySelector('#message').innerHTML = "<p class=' text-danger fw-bold mt-3'>Mauvaise réponse : La lettre "+ inputLetter.toUpperCase() +" ne fait pas partie du mot</p>";
-        document.querySelector('#dessin').innerHTML = "<img src='" + error + ".png' class='img-fluid' style='width:15rem'>";
+        document.querySelector('#dessin').innerHTML = "<img src='" + error + ".png' class='img-fluid' style='width:15rem'><p class='mt-2'>"+ messageError + "</p>";
     }
     if (error === 8 || count === 10) {
         alert('Vous avez perdu la partie');
