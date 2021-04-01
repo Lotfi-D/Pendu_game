@@ -1,23 +1,23 @@
-let words = [
-    'fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste', 'Aquarium', 'Araignée', 'Arbalète', 'Archipel', 'Banquise', 'Batterie', 'Brocante',
-    'Brouhaha', 'Capeline', 'Clavecin', 'Cloporte', 'Débutant', 'Diapason', 'Gangster', 'Gothique', 'Hautbois', 'Hérisson', 'Logiciel', 'Objectif',
-    'Paranoïa', 'Parcours', 'Pastiche', 'Question', 'Quetsche', 'Scarabée', 'Scorpion', 'Symptôme', 'Tabouret', 'Tomahawk', 'Toujours', 'Tourisme',
-    'Triangle', 'Utopique', 'Zeppelin', 'Accordéon', 'Ascenseur', 'Ascension', 'Aseptiser', 'Autoroute', 'Avalanche', 'Balalaïka', 'Bilboquet', 'Bourricot',
-    'Brillance', 'Cabriolet', 'Contrario', 'Cornemuse', 'Dangereux', 'Épluchage', 'Féodalité', 'Forteresse', 'Gondolier', 'Graphique', 'Horoscope', 'Intrépide',
-    'Klaxonner', 'Mascarade', 'Métaphore', 'Narrateur', 'Péripétie', 'Populaire', 'Printemps', 'Quémander', 'Tambourin', 'Vestiaire', 'Xylophone', 'Acrostiche',
-    'Apocalypse', 'Attraction', 'Aventurier', 'Bouillotte', 'Citrouille', 'Controverse', 'Coquelicot', 'Dissimuler', 'Flibustier', 'Forestière', 'Grenouille',
-    'Impossible', 'Labyrinthe', 'Maharadjah', 'Prudemment', 'Quadriceps', 'Soliloquer', 'Subjective', 'Abriter', 'Ballast', 'Baryton', 'Bassine', 'Batavia',
-    'Billard', 'Bretzel', 'Cithare', 'Chariot', 'Clairon', 'Corbeau', 'Cortège', 'Crapaud', 'Cymbale', 'Dentier', 'Djembé', 'Drapeau', 'Exemple',
-    'Fourmis', 'Grandir', 'Iceberg', 'Javelot', 'Jockey', 'Journal', 'Journée', 'Jouxter', 'Losange', 'Macadam', 'Mondial', 'Notable', 'Oxygène',
-    'Panique', 'Pétrole', 'Poterie', 'Pouvoir', 'Renégat', 'Scooter', 'Senteur', 'Sifflet', 'Spirale', 'Sucette', 'Strophe', 'Tonneau', 'Trousse',
-    'Tunique', 'Ukulélé', 'Vautour', 'Zozoter', 'Acajou', 'Agneau', 'Alarme', 'Ananas', 'Angora', 'Animal', 'Arcade', 'Aviron', 'Azimut', 'Babine',
-    'Balade', 'Bonzaï', 'Basson', 'Billet', 'Bouche', 'Boucle', 'Bronze', 'Cabane', 'Caïman', 'Cloche', 'Chèque', 'Cirage', 'Coccyx', 'Crayon', 'Garage',
-    'Gospel', 'Goulot', 'Gramme', 'Grelot', 'Guenon', 'Hochet', 'Hormis', 'Humour', 'Hurler', 'Jargon', 'Limite', 'Lionne', 'Menthe', 'Oiseau', 'Podium',
-    'Poulpe', 'Poumon', 'Puzzle', 'Quartz', 'Rapide', 'Séisme', 'Tétine', 'Tomate', 'Walabi', 'Whisky', 'Zipper', 'Accès', 'Aimer', 'Aloès', 'Assez', 'Avion',
-    'Awalé', 'Balai', 'Banjo', 'Barbe', 'Bonne', 'Bruit', 'Buche', 'Cache', 'Capot', 'Carte', 'Chien', 'Crâne', 'Cycle', 'Ébène', 'Essai', 'Gifle', 'Honni', 'Jambe',
-    'Koala', 'Livre', 'Lourd', 'Maman', 'Moult', 'Noeud', 'Ortie', 'Pêche', 'Poire', 'Pomme', 'Poste', 'Prune', 'Radar', 'Radis', 'Robot', 'Route', 'Rugby', 'Seuil',
-    'Taupe', 'Tenue', 'Texte', 'Tyran', 'Usuel', 'Valse',
-];
+ let words = [
+     'fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste', 'Aquarium', 'Araignée', 'Arbalète', 'Archipel', 'Banquise', 'Batterie', 'Brocante',
+     'Brouhaha', 'Capeline', 'Clavecin', 'Cloporte', 'Débutant', 'Diapason', 'Gangster', 'Gothique', 'Hautbois', 'Hérisson', 'Logiciel', 'Objectif',
+     'Paranoïa', 'Parcours', 'Pastiche', 'Question', 'Quetsche', 'Scarabée', 'Scorpion', 'Symptôme', 'Tabouret', 'Tomahawk', 'Toujours', 'Tourisme',
+     'Triangle', 'Utopique', 'Zeppelin', 'Accordéon', 'Ascenseur', 'Ascension', 'Aseptiser', 'Autoroute', 'Avalanche', 'Balalaïka', 'Bilboquet', 'Bourricot',
+     'Brillance', 'Cabriolet', 'Contrario', 'Cornemuse', 'Dangereux', 'Épluchage', 'Féodalité', 'Forteresse', 'Gondolier', 'Graphique', 'Horoscope', 'Intrépide',
+     'Klaxonner', 'Mascarade', 'Métaphore', 'Narrateur', 'Péripétie', 'Populaire', 'Printemps', 'Quémander', 'Tambourin', 'Vestiaire', 'Xylophone', 'Acrostiche',
+     'Apocalypse', 'Attraction', 'Aventurier', 'Bouillotte', 'Citrouille', 'Controverse', 'Coquelicot', 'Dissimuler', 'Flibustier', 'Forestière', 'Grenouille',
+     'Impossible', 'Labyrinthe', 'Maharadjah', 'Prudemment', 'Quadriceps', 'Soliloquer', 'Subjective', 'Abriter', 'Ballast', 'Baryton', 'Bassine', 'Batavia',
+     'Billard', 'Bretzel', 'Cithare', 'Chariot', 'Clairon', 'Corbeau', 'Cortège', 'Crapaud', 'Cymbale', 'Dentier', 'Djembé', 'Drapeau', 'Exemple',
+     'Fourmis', 'Grandir', 'Iceberg', 'Javelot', 'Jockey', 'Journal', 'Journée', 'Jouxter', 'Losange', 'Macadam', 'Mondial', 'Notable', 'Oxygène',
+     'Panique', 'Pétrole', 'Poterie', 'Pouvoir', 'Renégat', 'Scooter', 'Senteur', 'Sifflet', 'Spirale', 'Sucette', 'Strophe', 'Tonneau', 'Trousse',
+     'Tunique', 'Ukulélé', 'Vautour', 'Zozoter', 'Acajou', 'Agneau', 'Alarme', 'Ananas', 'Angora', 'Animal', 'Arcade', 'Aviron', 'Azimut', 'Babine',
+     'Balade', 'Bonzaï', 'Basson', 'Billet', 'Bouche', 'Boucle', 'Bronze', 'Cabane', 'Caïman', 'Cloche', 'Chèque', 'Cirage', 'Coccyx', 'Crayon', 'Garage',
+     'Gospel', 'Goulot', 'Gramme', 'Grelot', 'Guenon', 'Hochet', 'Hormis', 'Humour', 'Hurler', 'Jargon', 'Limite', 'Lionne', 'Menthe', 'Oiseau', 'Podium',
+     'Poulpe', 'Poumon', 'Puzzle', 'Quartz', 'Rapide', 'Séisme', 'Tétine', 'Tomate', 'Walabi', 'Whisky', 'Zipper', 'Accès', 'Aimer', 'Aloès', 'Assez', 'Avion',
+     'Awalé', 'Balai', 'Banjo', 'Barbe', 'Bonne', 'Bruit', 'Buche', 'Cache', 'Capot', 'Carte', 'Chien', 'Crâne', 'Cycle', 'Ébène', 'Essai', 'Gifle', 'Honni', 'Jambe',
+     'Koala', 'Livre', 'Lourd', 'Maman', 'Moult', 'Noeud', 'Ortie', 'Pêche', 'Poire', 'Pomme', 'Poste', 'Prune', 'Radar', 'Radis', 'Robot', 'Route', 'Rugby', 'Seuil',
+     'Taupe', 'Tenue', 'Texte', 'Tyran', 'Usuel', 'Valse',
+ ];
 
 let wordNow = '';
 let tableau = [];
@@ -48,7 +48,7 @@ function changeWord() {
     tableau.push(wordNow[0]);
 
     for (i = 1; i < wordNow.length - 1; i++) {
-        if (wordNow[0] === wordNow[i] || wordNow[wordNow.length - 1] === wordNow[i]) {
+        if (wordNow[0].toUpperCase() === wordNow[i].toUpperCase() || wordNow[wordNow.length - 1].toUpperCase() === wordNow[i].toUpperCase()) {
             tableau.push(wordNow[i]);
         } else {
             tableau.push('_');
@@ -116,7 +116,7 @@ function lastChance() {
             } else {
                 document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était " + wordNow.join('').toUpperCase() + " </p>";
                 document.querySelector('#message').innerHTML = "";
-                document.querySelector('#dessin').innerHTML = "<img src='8.png' class='img-fluid' style='width:15rem'><p class='mt-2'>" ;
+                document.querySelector('#dessin').innerHTML = "<img src='8.png' class='img-fluid' style='width:15rem'><p class='mt-2'>";
                 alert('false');
             }
 
@@ -149,9 +149,10 @@ function check() {
         document.querySelector('#message').innerHTML = "";
         finish = true;
         //alert('Vous avez gagné la partie !');
-        
+
         //fr apparaitre la 1ere lettre ds les _ _ _ 
         //possibilié de jouer 2 fois la mm lettre? qd elle est nb aussi? enleve coup et msg? ou juste msg sans les coups?
+        //ajouter score
     }
 }
 
