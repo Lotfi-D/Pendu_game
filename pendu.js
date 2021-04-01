@@ -1,9 +1,26 @@
-let words = ['fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste', 'yzutzzpo'];
+let words = [
+    'fort', 'ingénieux', 'determine', 'shonen', 'enveloppe', 'poste', 'yzutzzpo'
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let wordNow = '';
 let tableau = [];
 let count = 0;
 let error = 0;
-let numberBefore = 0;
+let numberBefore = null;
 let number = 0;
 let finish = false
 
@@ -18,7 +35,7 @@ function changeWord() {
     do {
         number = Math.floor(Math.random() * Math.floor(words.length));
     }
-    while(numberBefore == number);
+    while (numberBefore === number);
 
     wordNow = [...words[number]];
     tableau = [];
