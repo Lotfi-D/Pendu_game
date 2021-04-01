@@ -116,6 +116,7 @@ function lastChance() {
             } else {
                 document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était " + wordNow.join('').toUpperCase() + " </p>";
                 document.querySelector('#message').innerHTML = "";
+                document.querySelector('#dessin').innerHTML = "<img src='8.png' class='img-fluid' style='width:15rem'><p class='mt-2'>" ;
                 alert('false');
             }
 
