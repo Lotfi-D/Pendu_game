@@ -25,7 +25,9 @@ let count = 10;
 let error = 0;
 let numberBefore = null;
 let number = 0;
-let finish = false
+let finish = false;
+let inputLetter;
+let index;
 
 function changeWord() {
     document.querySelector('#dessin').innerHTML = "";
@@ -61,10 +63,8 @@ function changeWord() {
 
 function letterToFind() {
     try {
-        let inputLetter = document.querySelector("#findLetter").value;
-        let index = wordNow.indexOf(inputLetter);
-        console.log('index : ', index);
-        console.log('partie finish', finish)
+        inputLetter = document.querySelector("#findLetter").value;
+        index = wordNow.indexOf(inputLetter);
 
         if (index !== (-1) && finish === false) {
             for (i = 0; i < wordNow.length; i++) {
@@ -78,7 +78,7 @@ function letterToFind() {
                 count--;
             }
         }
-        if (index === (-1) && error < 8 && finish === false) {
+        if (index === (-1) && finish === false) {
             if (error < 8 && count != 0) {
                 error++;
                 count--;
@@ -97,27 +97,7 @@ function letterToFind() {
         }
 
         //message à afficher en fonction des coups et des erreurs    
-        if (count === 1) {
-            document.querySelector('#messageRound').textContent = "Il vous reste " + count + " coup à jouer";
-        } else {
-            document.querySelector('#messageRound').textContent = "Il vous reste " + count + " coups à jouer";
-        };
-
-        if (error === 8 || count === 0) {
-            document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était " + wordNow.join('').toUpperCase() + " </p>";
-            document.querySelector('#message').innerHTML = "";
-            finish = true;
-            // alert('Vous avez perdu la partie');
-        }
-
-        if (tableau.toString() === wordNow.toString()) {
-            document.querySelector('#messageRound').innerHTML = "<p class='text-success fw-bold'>La partie est finie, Félicitations, vous avez gagné ! </p>";
-            document.querySelector('#dessin').innerHTML = " ";
-            document.querySelector('#message').innerHTML = "";
-            finish = true;
-            //alert('Vous avez gagné la partie !');
-        }
-        console.log('count', count, 'error', error);
+        check();
     } catch (e) {
         console.log('erreur: ', error);
     }
@@ -127,14 +107,13 @@ function lastChance() {
     try {
         let inputWord = document.querySelector("#findWord").value;
         console.log(inputWord.toUpperCase(), wordNow.join('').toUpperCase());
-        if(finish === false) {
-            if(inputWord.toUpperCase() === wordNow.join('').toUpperCase()){
+        if (finish === false) {
+            if (inputWord.toUpperCase() === wordNow.join('').toUpperCase()) {
                 alert('good');
                 document.querySelector('#messageRound').innerHTML = "<p class='text-success fw-bold'>La partie est finie, Félicitations, vous avez gagné ! </p>";
                 document.querySelector('#dessin').innerHTML = " ";
                 document.querySelector('#message').innerHTML = "";
-            }
-            else{
+            } else {
                 document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était " + wordNow.join('').toUpperCase() + " </p>";
                 document.querySelector('#message').innerHTML = "";
                 alert('false');
@@ -143,9 +122,32 @@ function lastChance() {
         }
 
         finish = true;
-    }
-    catch(e) {
+    } catch (e) {
         console.log(e);
+    }
+}
+
+function check() {
+
+    if (count === 1) {
+        document.querySelector('#messageRound').textContent = "Il vous reste " + count + " coup à jouer";
+    } else {
+        document.querySelector('#messageRound').textContent = "Il vous reste " + count + " coups à jouer";
+    };
+
+    if (error === 8 || count === 0) {
+        document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était " + wordNow.join('').toUpperCase() + " </p>";
+        document.querySelector('#message').innerHTML = "";
+        finish = true;
+        // alert('Vous avez perdu la partie');
+    }
+
+    if (tableau.toString() === wordNow.toString()) {
+        document.querySelector('#messageRound').innerHTML = "<p class='text-success fw-bold'>La partie est finie, Félicitations, vous avez gagné ! </p>";
+        document.querySelector('#dessin').innerHTML = " ";
+        document.querySelector('#message').innerHTML = "";
+        finish = true;
+        //alert('Vous avez gagné la partie !');
     }
 }
 
