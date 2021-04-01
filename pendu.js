@@ -148,6 +148,9 @@ function check() {
         document.querySelector('#message').innerHTML = "";
         finish = true;
         //alert('Vous avez gagné la partie !');
+        
+        //fr apparaitre la 1ere lettre ds les _ _ _ 
+        //possibilié de jouer 2 fois la mm lettre? qd elle est nb aussi? enleve coup et msg? ou juste msg sans les coups?
     }
 }
 
