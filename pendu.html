@@ -21,10 +21,7 @@
       </div>
         
     
-        <div class="border-bottom border-dark">
-           
-
-    </div>
+        <div class="border-bottom border-dark"></div>
 
 
         <div class="text-center">
@@ -33,13 +30,18 @@
             Le mot
           </div>
           
-          <div id="test" class="mt-5">
-            <input type="text" id='findWord' placeholder='Entrez une lettre' maxlength=1 />
+          <div class="mt-5">
+            <input type="text" id='findLetter' placeholder='Entrez une lettre' maxlength=1 />
             <button id='validateLetter' class="mt-0 btn-sm btn-warning ">Valider</button>
           </div>
-          <div id='message' class=''>
-          
+
+          <div class="mt-5">
+            <input type="text" id='findWord' placeholder="Entrez le mot entier" />
+            <button id='validateWord' class="mt-0 btn-sm btn-danger ">Valider le mot</button>
           </div>
+
+
+          <div id='message' class=''></div>
           <div id="dessin" class='row justify-content-center mt-3' ></div>
           <div id='messageRound'></div>
           <button id='randomnumber' class='mt-3'>Nouvelle partie</button>

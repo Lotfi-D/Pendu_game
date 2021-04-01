@@ -21,7 +21,7 @@ let words = [
 
 let wordNow = '';
 let tableau = [];
-let count = 0;
+let count = 10;
 let error = 0;
 let numberBefore = null;
 let number = 0;
@@ -32,7 +32,7 @@ function changeWord() {
     document.querySelector('#message').innerHTML = "";
     document.querySelector('#messageRound').innerHTML = "";
 
-    count = 0;
+    count = 10;
     error = 0;
     finish = false;
 
@@ -61,7 +61,7 @@ function changeWord() {
 
 function letterToFind() {
     try {
-        let inputLetter = document.querySelector("#findWord").value;
+        let inputLetter = document.querySelector("#findLetter").value;
         let index = wordNow.indexOf(inputLetter);
         console.log('index : ', index);
         console.log('partie finish', finish)
@@ -74,14 +74,14 @@ function letterToFind() {
             }
             document.querySelector('#word').textContent = tableau.join(' ').toUpperCase();
             document.querySelector('#message').innerHTML = "<p class=' text-success fw-bold mt-3'> Bonne réponse : La lettre " + inputLetter.toUpperCase() + " fait bien partie du mot</p>";
-            if (count < 11) {
-                count++;
+            if (count != 0) {
+                count--;
             }
         }
         if (index === (-1) && error < 8 && finish === false) {
-            if (error < 8 && count < 11) {
+            if (error < 8 && count != 0) {
                 error++;
-                count++;
+                count--;
             }
 
             let messageError;
@@ -97,13 +97,13 @@ function letterToFind() {
         }
 
         //message à afficher en fonction des coups et des erreurs    
-        if ((10 - count) === 1) {
-            document.querySelector('#messageRound').textContent = "Il vous reste " + (11 - count) + " coup à jouer";
+        if (count === 1) {
+            document.querySelector('#messageRound').textContent = "Il vous reste " + count + " coup à jouer";
         } else {
-            document.querySelector('#messageRound').textContent = "Il vous reste " + (11 - count) + " coups à jouer";
+            document.querySelector('#messageRound').textContent = "Il vous reste " + count + " coups à jouer";
         };
 
-        if (error === 8 || count === 11) {
+        if (error === 8 || count === 0) {
             document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était " + wordNow.join('').toUpperCase() + " </p>";
             document.querySelector('#message').innerHTML = "";
             finish = true;
@@ -124,7 +124,29 @@ function letterToFind() {
 }
 
 function lastChance() {
-    
+    try {
+        let inputWord = document.querySelector("#findWord").value;
+        console.log(inputWord.toUpperCase(), wordNow.join('').toUpperCase());
+        if(finish === false) {
+            if(inputWord.toUpperCase() === wordNow.join('').toUpperCase()){
+                alert('good');
+                document.querySelector('#messageRound').innerHTML = "<p class='text-success fw-bold'>La partie est finie, Félicitations, vous avez gagné ! </p>";
+                document.querySelector('#dessin').innerHTML = " ";
+                document.querySelector('#message').innerHTML = "";
+            }
+            else{
+                document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était " + wordNow.join('').toUpperCase() + " </p>";
+                document.querySelector('#message').innerHTML = "";
+                alert('false');
+            }
+
+        }
+
+        finish = true;
+    }
+    catch(e) {
+        console.log(e);
+    }
 }
 
 changeWord();
@@ -132,3 +154,5 @@ let randomNumber = document.querySelector('#randomnumber');
 randomNumber.addEventListener('click', changeWord);
 
 document.querySelector('#validateLetter').addEventListener('click', letterToFind);
+
+document.querySelector('#validateWord').addEventListener('click', lastChance);
