@@ -100,7 +100,7 @@ function letterToFind() {
     };
 
     if (error === 8 || count === 10) {
-        document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! </p>";
+        document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était "+ wordNow.join('').toUpperCase() +" </p>";
         document.querySelector('#message').innerHTML = "";
         finish = true;
         alert('Vous avez perdu la partie');
