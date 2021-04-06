@@ -28,6 +28,7 @@ let number = 0;
 let finish = false;
 let inputLetter;
 let index;
+let olderLetters = [];
 
 function changeWord() {
     document.querySelector('#dessin').innerHTML = "";
@@ -37,6 +38,7 @@ function changeWord() {
     count = 10;
     error = 0;
     finish = false;
+    olderLetters = [];
 
     do {
         number = Math.floor(Math.random() * Math.floor(words.length));
@@ -65,7 +67,15 @@ function letterToFind() {
     try {
         inputLetter = document.querySelector("#findLetter").value;
         index = wordNow.indexOf(inputLetter);
+        if(inputLetter !== '') {
+            olderLetters.push(inputLetter);
+        }
+        let ordersLettersUnique = [...new Set(olderLetters)];
+        
+        console.log('TEST', (ordersLettersUnique));
+        console.log('olderLetters', ordersLettersUnique.join(' '));
 
+    
         if (index !== (-1) && finish === false) {
             for (i = 0; i < wordNow.length; i++) {
                 if (wordNow[i] === inputLetter) {
@@ -96,6 +106,9 @@ function letterToFind() {
             document.querySelector('#dessin').innerHTML = "<img src='" + error + ".png' class='img-fluid' style='width:15rem'><p class='mt-2'>" + messageError + "</p>";
         }
 
+        document.querySelector('#olderLetters').textContent = 'Lettres déjà jouées : ' + ordersLettersUnique.join(', ').toUpperCase();
+
+
         //message à afficher en fonction des coups et des erreurs    
         check();
     } catch (e) {
@@ -109,7 +122,6 @@ function lastChance() {
         console.log(inputWord.toUpperCase(), wordNow.join('').toUpperCase());
         if (finish === false) {
             if (inputWord.toUpperCase() === wordNow.join('').toUpperCase()) {
-                alert('good');
                 document.querySelector('#messageRound').innerHTML = "<p class='text-success fw-bold'>La partie est finie, Félicitations, vous avez gagné ! </p>";
                 document.querySelector('#dessin').innerHTML = " ";
                 document.querySelector('#message').innerHTML = "";
@@ -117,9 +129,7 @@ function lastChance() {
                 document.querySelector('#messageRound').innerHTML = "<p class='text-danger fw-bold'>La partie est finie, Vous avez perdu ! Le mot était " + wordNow.join('').toUpperCase() + " </p>";
                 document.querySelector('#message').innerHTML = "";
                 document.querySelector('#dessin').innerHTML = "<img src='8.png' class='img-fluid' style='width:15rem'><p class='mt-2'>";
-                alert('false');
             }
-
         }
 
         finish = true;
