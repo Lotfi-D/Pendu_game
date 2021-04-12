@@ -39,7 +39,6 @@ function changeWord() {
     error = 0;
     finish = false;
     olderLetters = [];
-    ordersLettersUnique =[];
 
     do {
         number = Math.floor(Math.random() * Math.floor(words.length));
