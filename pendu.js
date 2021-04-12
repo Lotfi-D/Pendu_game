@@ -34,11 +34,12 @@ function changeWord() {
     document.querySelector('#dessin').innerHTML = "";
     document.querySelector('#message').innerHTML = "";
     document.querySelector('#messageRound').innerHTML = "";
-
+    document.querySelector('#olderLetters').textContent ="";
     count = 10;
     error = 0;
     finish = false;
     olderLetters = [];
+    ordersLettersUnique =[];
 
     do {
         number = Math.floor(Math.random() * Math.floor(words.length));
